@@ -18,7 +18,8 @@ Testr3::Application.configure do
   config.assets.compile = false
 
   # Generate digests for assets URLs
-  config.assets.digest = true
+  config.assets.digest = true      
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
