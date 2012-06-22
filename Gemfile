@@ -9,7 +9,7 @@ gem 'mysql2'
 gem 'pg'   
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'devise'
-
+gem "watu_table_builder", :require => "table_builder"
 
 # Gems used only for assets and not required
 # in production environments by default.

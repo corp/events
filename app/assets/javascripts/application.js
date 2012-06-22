@@ -20,7 +20,12 @@ put_action_link_id = function(model,action, id) {
   var link_id;
   link_id = model+'_'+action + '_' + id;                    
   return $('#action_link_id').attr('value', link_id);
-};
+};  
+                           
+
+function  load_calendar(month) { 
+     return $("#main_div").load('events?month="' + month + '&ajax=true"');      
+ };
 
 jQuery(function() {
   return $('#dp3').datepicker();
@@ -38,4 +43,4 @@ $(document).ready(function(){
         $('#'+action+'Modal').load(link);
     })  
     $("#mv_culture").load("enterprises/1");                                     
-})
+})                                                                   

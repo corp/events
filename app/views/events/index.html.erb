@@ -2,41 +2,37 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <input type='hidden' id='action_link_id' value=''>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:date_at) %></th>    
-      <th><%= model_class.human_attribute_name(:place) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= link_to event.id, event_path(event) %></td>
-        <td><%= event.name %></td>
-        <td><%= event.date_at %></td> 
-        <td><%= event.place %></td> 
-        <td><%= event.description %></td>
-        <td><%=l event.created_at %></td>     
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_event_path(event,:modal=>true), :class => 'btn btn-mini', :id=>"#{model_class.model_name}_Edit_#{event.id}" ,:data => {:toggle => "modal", :target=>"#EditModal"},:onclick=>"put_action_link_id('#{model_class.model_name}','Edit',#{event.id})"%>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      event_path(event),
-                      :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+    <div class="span8">      
+        <div id="calendar">
+            <h2 id="month">
+                <%= link_to "<","#",:id=>"prev_arrow",:onclick=>"load_calendar('#{(@date.beginning_of_month-1).strftime("%Y-%m-%d")}')"%>
+                <%=h @date.strftime("%B %Y") %>
+                <%= link_to ">","#",:id=>"next_arrow",:onclick=>"load_calendar('#{(@date.end_of_month+1).strftime("%Y-%m-%d")}')"%>
+            </h2>                
+            <%=calendar_for @events, :year => @date.year, :month => @date.month  do |calendar| %>  
+                <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
+                <%=calendar.day(:day_method=>:date_at) do |date,events| %>
+                    <%=date.day%>      
+                    <ul>
+                        <% for event in events %> 
+                            <li><%= link_to h(event.name), event %></li>
+                        <% end %>
+                    </ul>       
+                <%end%>
+            <%end%>
+         </div>
+    </div>
+    
+</div>     
+                                 
+ <%#= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_event_path(event,:modal=>true), :class => 'btn btn-mini', :id=>"#{model_class.model_name}_Edit_#{event.id}" ,:data => {:toggle => "modal", :target=>"#EditModal"},:onclick=>"put_action_link_id('#{model_class.model_name}','Edit',#{event.id})"%>
+  <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              event_path(event),
+              :method => :delete,
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-mini btn-danger' %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_event_path,

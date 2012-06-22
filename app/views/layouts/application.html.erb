@@ -63,7 +63,7 @@
             </div>
           <%end%>
         <div class="row">
-           <div class="span<%if user_signed_in?%>8<%else%>4 offset4<%end%>">
+           <div class="span<%if user_signed_in?%>8<%else%>4 offset4<%end%>" id="main_div">
               <%= yield %>
             </div>                    
             <% if user_signed_in? %>

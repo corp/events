@@ -4,9 +4,10 @@ before_filter :authenticate_user!
   # GET /events.json
   def index
     @events = Event.all
-
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @ajax = params[:ajax] ? false : true
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :layout=> @ajax}
       format.json { render json: @events }
     end
   end
