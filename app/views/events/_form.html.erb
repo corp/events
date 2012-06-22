@@ -1,0 +1,42 @@
+<%= form_for @event, :html => { :class => 'form-horizontal' } do |f| %>  
+<div <% if @modal %> class="modal-body" id="Edit_modal_body" <%end%> >
+      <div class="control-group">
+        <%= f.label :name, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :name, :class => 'text_field' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :date_at, :class => 'control-label' %>
+        <div class="controls">   
+            <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy"> 
+                    <%= f.text_field :date_at, :class => 'date_field' %>  
+                    <span class="add-on"><i class="icon-th"></i></span>
+               </div>
+
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :description, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_area :description, :class => 'span3' %>
+        </div>
+      </div> 
+
+      <div class="control-group">
+        <%= f.label :place, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :place, :class => 'text_field' %>
+        </div>
+      </div>   
+</div>
+
+<div class="<%if @modal%>modal-footer<%else%>form-actions<%end%>" >   
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    events_path, :class => 'btn',  :data=>{:dismiss=>"modal"}%>     
+</div>
+
+
+<% end %>  
+

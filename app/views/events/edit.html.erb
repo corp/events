@@ -1,0 +1,12 @@
+<%- model_class = Event -%>    
+<%=  
+    if @modal 
+      javascript_include_tag "application" 
+    end
+%>
+<div class="<%=@modal ? "modal" : "page" %>-header">  
+  <%  if @modal %><button type="button" class="close" data-dismiss="modal">×</button><% end %>
+  <h1><%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
+                                   :default => "Edit #{model_class.model_name.human}") %></h1>
+</div>
+<%= render :partial => 'form' %>

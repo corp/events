@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  mision: MyString
+  vission: MyString
+
+two:
+  mision: MyString
+  vission: MyString

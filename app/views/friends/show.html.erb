@@ -1,0 +1,31 @@
+<%- model_class = Friend -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @friend.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:lastname) %>:</strong></dt>
+  <dd><%= @friend.lastname %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:nickname) %>:</strong></dt>
+  <dd><%= @friend.nickname %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:birthday) %>:</strong></dt>
+  <dd><%= @friend.birthday %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
+  <dd><%= @friend.address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cellphone) %>:</strong></dt>
+  <dd><%= @friend.cellphone %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              friends_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_friend_path(@friend), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              friend_path(@friend),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>
