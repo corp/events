@@ -1,7 +1,5 @@
 Testr3::Application.routes.draw do
-  resources :enterprises
-
-  root :to => 'events#index'
+  resources :enterprises   
   
   devise_for :users
 
@@ -11,7 +9,9 @@ Testr3::Application.routes.draw do
 
   resources :events
 
-  resources :users
+  resources :users    
+
+  root :to => 'users#sign_in'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
