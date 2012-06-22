@@ -11,7 +11,7 @@ Testr3::Application.routes.draw do
 
   resources :users    
 
-  root :to => 'users#sign_in'
+  root :to => 'events#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
