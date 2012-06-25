@@ -12,7 +12,10 @@ Testr3::Application.routes.draw do
   resources :users    
 
   root :to => 'events#index'
-
+                        
+  #match 'users/:username/full(.:format)' => 'users#show_profile', :view_mode=>"full", :as => :profile
+                                                     
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

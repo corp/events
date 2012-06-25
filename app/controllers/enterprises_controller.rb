@@ -1,5 +1,13 @@
 class EnterprisesController < ApplicationController    
-before_filter :authenticate_user!
+before_filter :authenticate_user! 
+
+  def controllers 
+    @cotrollers=ApplicationController.subclasses
+    respond_to do |format|
+      format.html
+      format.json{render json: @controllers}
+    end
+  end
   # GET /enterprises
   # GET /enterprises.json
   def index

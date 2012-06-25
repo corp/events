@@ -1,15 +1,15 @@
 <%- model_class = Event -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
-</div>
-
+</div> 
+      <%= image_tag @event.image_url(:thumb).to_s %>       
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @event.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:date_at) %>:</strong></dt>
   <dd><%= @event.date_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @event.description %></dd>
+  <dd><%= @event.description %></dd>      
 </dl>
 
 <div class="form-actions">

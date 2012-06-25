@@ -41,6 +41,6 @@ $(document).ready(function(){
         var action=element_params[1];    
         var idModal=action;           
         $('#'+action+'Modal').load(link);
-    })  
-    $("#mv_culture").load("enterprises/1");                                     
-})                                                                   
+    })                                                      
+})               
+ $("#mv_culture").load("../enterprises/1");                                                        

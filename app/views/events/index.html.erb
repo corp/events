@@ -15,7 +15,8 @@
                 <%=calendar.day(:day_method=>:date_at) do |date,events| %>
                     <%=date.day%>      
                     <ul>
-                        <% for event in events %> 
+                        <% for event in events %>   
+                            <li><%= link_to( image_tag(event.image_url(:thumb)).to_s, event) %></li>
                             <li><%= link_to h(event.name), event %></li>
                         <% end %>
                     </ul>       
