@@ -1,4 +1,4 @@
-TEST DE UN CAMBIO
+TEST DE UN CAMBIO  --- cambio que dara conflictos
 
 == Welcome to Rails
 
