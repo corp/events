@@ -1,0 +1,16 @@
+<h1>Comments</h1>                       
+
+<% @comments.each do |comment| %>
+  <div class="comment" data-commentid="<%= comment.id%>">
+    <div  class="root_comment">
+        <p>
+            <%=comment.content %></br>
+            <%= link_to "Reply", "#new_comment_link",:onclick=>"load_new_comment(#{@commentable.id},#{comment.id}); return false;",:id=>"reply_to_#{comment.id}"%>
+        </p>   
+        <%= render :partial=>"comments/answers", :locals =>{:level=>1, :answer_to=>comment.id,:answers=>comment.answers, :layout=>false}%>
+    </div>
+    <div id="reply_to_<%=comment.id%>_div" class="reply_to_div"></div>       
+  </div> 
+<% end %>                         
+<p><%= link_to "New Comment", "#new_comment_link",:onclick=>"load_new_comment(#{@commentable.id},-1); return false;",:id=>"new_commente_link"%></p>
+<div id="new_comment_div"></div>      

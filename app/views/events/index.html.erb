@@ -5,6 +5,7 @@
 <div class="row">
     <div class="span8">      
         <div id="calendar">
+            <input type="hidden" id="action_link_id" value=""></input>
             <h2 id="month">
                 <%= link_to "<","#",:id=>"prev_arrow",:onclick=>"load_calendar('#{(@date.beginning_of_month-1).strftime("%Y-%m-%d")}')"%>
                 <%=h @date.strftime("%B %Y") %>
@@ -16,7 +17,7 @@
                     <%=date.day%>      
                     <ul>
                         <% for event in events %>   
-                            <li><%= link_to( image_tag(event.image_url(:thumb)).to_s, event) %></li>
+                            <li><%= link_to( image_tag(event.image_url(:thumb_small)).to_s, event) %></li>
                             <li><%= link_to h(event.name), event %></li>
                         <% end %>
                     </ul>       
@@ -28,13 +29,8 @@
 </div>     
                                  
  <%#= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_event_path(event,:modal=>true), :class => 'btn btn-mini', :id=>"#{model_class.model_name}_Edit_#{event.id}" ,:data => {:toggle => "modal", :target=>"#EditModal"},:onclick=>"put_action_link_id('#{model_class.model_name}','Edit',#{event.id})"%>
-  <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              event_path(event),
-              :method => :delete,
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-mini btn-danger' %>
+              edit_event_path(event,:modal=>true), :class => 'btn btn-mini', :id=>"#{model_class.model_name}_Edit_#{event.id}" ,:data => {:toggle => "modal", :target=>"#EditModal"},:onclick=>"put_action_link_id('#{model_class.model_name}','Edit',#{event.id})"%>            
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_event_path,
-            :class => 'btn btn-primary' %>
+            new_event_path(:layout=>"false"),
+            :class => 'btn btn-primary', :id=>"#{model_class.model_name}_New" ,:data => {:toggle => "modal", :target=>"#NewModal"},:onclick=>"put_action_link_id('#{model_class.model_name}','New',0)"%>

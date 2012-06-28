@@ -1,0 +1,25 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/ 
+$answer_offset:10px;
+$comment_offset: $answer_offset;
+$comment_bckg_color:#D7D7D7; 
+$answer_bckg_color:#E4E4E4;
+.comment{  
+    margin: $comment_offset;
+    background-color:$comment_bckg_color;
+    .root_comment{  
+        .answer{      
+            margin: $answer_offset;
+            
+            background-color:$answer_bckg_color; 
+        }
+        
+    }
+    .reply_to_div{    
+        margin-left: $answer_offset;  
+    }
+    .new_comment_div{
+        margin-left:$answer_offset;
+    }   
+}

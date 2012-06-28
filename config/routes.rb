@@ -7,13 +7,15 @@ Testr3::Application.routes.draw do
 
   resources :friends
 
-  resources :events
+  resources :events do
+    resources :comments
+  end
 
   resources :users    
 
   root :to => 'events#index'
                         
-  #match 'users/:username/full(.:format)' => 'users#show_profile', :view_mode=>"full", :as => :profile
+  match 'events/reprocess_photos/(.:format)' => 'events#reprocess_photos', :as => :reproces_photos
                                                      
   
   # The priority is based upon order of creation:

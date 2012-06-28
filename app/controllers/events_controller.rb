@@ -16,6 +16,8 @@ before_filter :authenticate_user!
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @commentable=@event     
+    @comments=@commentable.comments.where(:reply_to=>nil)  
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,10 +28,10 @@ before_filter :authenticate_user!
   # GET /events/new
   # GET /events/new.json
   def new
-    @event = Event.new
-
+    @event = Event.new  
+    @modal=params[:layout] ? false : true
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout=>@modal} # new.html.erb
       format.json { render json: @event }
     end
   end
@@ -37,10 +39,8 @@ before_filter :authenticate_user!
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])  
-    @modal=params[:modal] ? true : false 
-    if @modal 
-      render :layout=>false
-    end
+    @modal=params[:layout] ? false : true 
+    render :layout=>@modal        
   end
 
   # POST /events

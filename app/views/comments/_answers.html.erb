@@ -1,0 +1,12 @@
+<% if answers.length>0%>
+    <div id="answer_to_<%= answer_to %>" class="answer"> 
+        <% answers.each do |answer| %> 
+          <p>
+            <%= answer.content %></br>
+            <%= link_to "Reply", "#new_comment_link",:onclick=>"load_new_comment(#{@commentable.id},#{answer.id}); return false;",:id=>"reply_to_#{answer.id}"%> 
+          </p>
+          <%= render :partial=>"comments/answers", :locals =>{:level=>1, :answer_to=>answer.id,:answers=>answer.answers, :layout=>false}%>
+          <div id="reply_to_<%=answer.id%>_div" class="reply_to_div"></div>
+        <%end%>
+    </div>         
+<%end%> 
